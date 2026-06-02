@@ -20,7 +20,7 @@ const login = async(req:Request,res:Response) =>{
     const user = await authService.validation(email , password)
 
     if (!user) {
-        sendResponse(res , {message:"Invalide email or password"},401)
+        sendResponse(res , {message:"Invalide email or password..!"},401)
         return
     }
     const payload = {
