@@ -15,7 +15,7 @@ const signup = async(req:Request,res:Response)=>{
 
 
 const login = async(req:Request,res:Response) =>{
-    const {email , password} = req.body;
+    const {email , password} = req.body
   
     const user = await authService.validation(email , password)
 
