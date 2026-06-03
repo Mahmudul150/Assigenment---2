@@ -1,8 +1,8 @@
- ### DevPulse API
+# DevPulse API
 
 A collaborative platform for software teams to report bugs, suggest features, and coordinate resolutions. Built with Node.js, TypeScript, Express.js, and PostgreSQL.
 
-### Tech Stack
+# Tech Stack
 
 ## Technology	Version / Note
 Node.js	LTS 24.x or higher
@@ -13,7 +13,7 @@ Raw SQL	Direct pool.query() — no ORM, no query builders, no JOINs
 bcrypt	Password hashing (salt rounds: 8–12)
 jsonwebtoken	JWT generation & verification
 
- ## Project Structure
+# Project Structure
 
 ASSIGNMENT-2/
 ├── src/
@@ -52,21 +52,21 @@ ASSIGNMENT-2/
 └── tsconfig.json
 |___ tsup.config.ts
 
-### Getting Started
+# Getting Started
 
 ## Prerequisites
 
 Node.js LTS 24.x or higher
 PostgreSQL database (e.g. Neon)
 
-# 1. Clone the Repository
+## 1. Clone the Repository
 git clone https://github.com/your-username/devpulse-assignment-2.git
 cd devpulse-assignment-2
 
-# 2. Install Dependencies
+## 2. Install Dependencies
 npm install
 
-# 3. Configure Environment Variables
+##  3. Configure Environment Variables
 Create a .env file in the project root:
 
 PORT=5000
@@ -74,14 +74,14 @@ DATABASE_URL="postgresql://<user>:<password>@<host>/<db>?sslmode=require"
 JWT_ACCESS_SECRET="your_access_secret"
 JWT_REFRESH_SECRET="your_refresh_secret"
 
-# 4. Run the Development Server
+##  4. Run the Development Server
 
 npm run dev
 The server will start at http://localhost:5000.
 
-### Database Schema
+# Database Schema
 
-# users Table
+## users Table
 
 Field	Type	Notes
 id	SERIAL PRIMARY KEY	Auto-increment
@@ -104,16 +104,16 @@ reporter_id	INTEGER	References users.id (app-level validation)
 created_at	TIMESTAMPTZ	Auto-set on insert
 updated_at	TIMESTAMPTZ	Auto-refreshed on update
 
-### User Roles & Permissions
+# User Roles & Permissions
 
 Role	Permissions
 contributor	Register, login, create issues, view all issues, update own issue (status must be open)
 maintainer	All contributor permissions + update any issue + delete any issue + change workflow status freely
 
-### API Reference
+# API Reference
 
 ## Authentication
-# POST /api/auth/signup — Register a new user
+### POST /api/auth/signup — Register a new user
 // Request Body
 {
   "name": "John Doe",
@@ -137,7 +137,7 @@ maintainer	All contributor permissions + update any issue + delete any issue + c
 }
 
 
-# POST /api/auth/login — Login and receive JWT
+### POST /api/auth/login — Login and receive JWT
 
 // Request Body
 {
@@ -166,7 +166,7 @@ maintainer	All contributor permissions + update any issue + delete any issue + c
 All protected endpoints require:
 
 Authorization: <JWT_TOKEN>
-# POST /api/issues — Create an issue (Auth required)
+### POST /api/issues — Create an issue (Auth required)
 // Request Body
 {
   "title": "Database connection timeout under load",
@@ -190,7 +190,7 @@ Authorization: <JWT_TOKEN>
   }
 }
 
-# GET /api/issues — Get all issues (Public)
+### GET /api/issues — Get all issues (Public)
 Supports optional query parameters:
 
 Param	Values	Default
@@ -199,9 +199,9 @@ type	bug, feature_request	—
 status	open, in_progress, resolved	—
 Example: GET /api/issues?sort=newest&type=bug&status=open
 
-# GET /api/issues/:id — Get a single issue (Public)
+### GET /api/issues/:id — Get a single issue (Public)
 
-# PATCH /api/issues/:id — Update an issue (Auth required)
+### PATCH /api/issues/:id — Update an issue (Auth required)
 
 Maintainer: can update any issue
 Contributor: can only update their own issue if status is open
@@ -212,23 +212,23 @@ Contributor: can only update their own issue if status is open
   "type": "bug"
 }
 
-# DELETE /api/issues/:id — Delete an issue (Maintainer only)
+### DELETE /api/issues/:id — Delete an issue (Maintainer only)
 
-### JWT Authentication Flow
+# JWT Authentication Flow
 Client → POST /auth/login → Server validates credentials
        ← Returns signed JWT (payload: id, name, role)
 
 Client → Protected request with header: Authorization: <token>
        → Server verifies signature & expiry → processes request
 
-## Security Rules
+# Security Rules
 
 Passwords are never returned in any API response or logged
 All protected endpoints reject requests without a valid JWT
 Role verification is performed before any privileged operation
 
-Live URL
+## Live URL
 https://assigenment-2.vercel.app
 
-GitHub Repository
+## GitHub Repository
 https://github.com/Mahmudul150/Assigenment---2
