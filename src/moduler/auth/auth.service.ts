@@ -21,7 +21,7 @@ class AuthServices{
             `,[email]);
 
           if (result.rows.length === 0) {
-            return null
+            return null;
         } 
         
         const {password, ...user} = result.rows[0] as User;
